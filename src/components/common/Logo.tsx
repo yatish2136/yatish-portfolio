@@ -1,24 +1,55 @@
 import { motion } from "framer-motion";
 
-export default function Logo() {
+type LogoProps = {
+  small?: boolean;
+};
+
+export default function Logo({ small = false }: LogoProps) {
   return (
-    <motion.div
-      whileHover={{ rotate: -5, scale: 1.05 }}
-      className="flex items-center gap-2 cursor-pointer"
+    <motion.a
+      href="#home"
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ duration: 0.2 }}
+      className="group flex items-center gap-3 select-none"
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-cyan-400 to-violet-500 font-bold text-white shadow-lg">
-        Y
+      {/* Logo Box */}
+      <div
+        className={`
+          flex items-center justify-center
+          rounded-xl
+          border border-white/10
+          bg-white/5
+          backdrop-blur-md
+          transition-all duration-300
+          group-hover:border-blue-500/40
+          group-hover:bg-blue-500/10
+          ${small ? "h-10 w-10" : "h-12 w-12"}
+        `}
+      >
+        <span
+          className={`
+            font-['Space_Grotesk']
+            font-bold
+            tracking-tight
+            text-white
+            ${small ? "text-base" : "text-lg"}
+          `}
+        >
+          Y
+        </span>
       </div>
 
-      <div>
-        <h1 className="font-['Space_Grotesk'] text-lg font-bold">
-          Yatish
-        </h1>
+      {/* Text */}
+      <div className="leading-none">
+        <p className="font-['Space_Grotesk'] text-lg font-bold tracking-tight text-white">
+          YBG
+        </p>
 
-        <p className="text-xs text-slate-400">
-          Software Engineer
+        <p className="mt-1 text-xs tracking-[0.25em] uppercase text-slate-400">
+          SOFTWARE ENGINEER
         </p>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
